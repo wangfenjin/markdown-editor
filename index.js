@@ -283,12 +283,14 @@ function saveInBrowser() {
     console.log("Saved");
 }
 
-function toggleNightMode(button) {
+function toggleNightMode(event) {
+    button = event.target
     button.classList.toggle('selected');
     document.getElementById('toplevel').classList.toggle('nightmode');
 }
 
-function toggleReadMode(button) {
+function toggleReadMode(event) {
+    button = event.target
     button.classList.toggle('selected');
     document.getElementById('out').classList.toggle('focused');
     document.getElementById('in').classList.toggle('hidden');
@@ -299,6 +301,8 @@ function toggleSpellCheck(button) {
     document.body.classList.toggle('no-spellcheck');
 }
 
+toastr.options.timeOut = 2400;
+
 function updateHash() {
     window.location.hash = btoa( // base64 so url-safe
         RawDeflate.deflate( // gzip
@@ -307,7 +311,23 @@ function updateHash() {
             ))
         )
     );
+    shareUrl = "https://wangfenjin.com/markdown-editor/"+window.location.hash;
+    copyToClipboard(shareUrl);
+    toastr.success("Copied to clipboard! Paste to share...");
 }
+
+// https://hackernoon.com/copying-text-to-clipboard-with-javascript-df4d4988697f
+const copyToClipboard = str => {
+    const el = document.createElement('textarea');
+    el.value = str;
+    el.setAttribute('readonly', '');
+    el.style.position = 'absolute';
+    el.style.left = '-9999px';
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el);
+};
 
 function processQueryParams() {
     var params = window.location.search.split('?')[1];
@@ -363,5 +383,17 @@ window.addEventListener("beforeunload", function (e) {
     (e || window.event).returnValue = confirmationMessage; //Gecko + IE
     return confirmationMessage; //Gecko + Webkit, Safari, Chrome etc.
 });
+
+// onclick
+document.getElementById('openbutton').addEventListener('click', function() {
+    document.getElementById('fileInput').click()
+});
+document.getElementById('browsersavebutton').addEventListener('click', saveInBrowser);
+document.getElementById('savebutton').addEventListener('click', showMenu);
+document.getElementById('sharebutton').addEventListener('click', updateHash);
+document.getElementById('nightbutton').addEventListener('click', toggleNightMode);
+document.getElementById('readbutton').addEventListener('click', toggleReadMode);
+document.getElementById('spellbutton').addEventListener('click', toggleSpellCheck);
+document.getElementById('newbutton').addEventListener('click', clearEditor);
 
 start();

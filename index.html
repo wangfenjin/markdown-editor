@@ -11,10 +11,195 @@
     <link rel="stylesheet" href="lib/github-markdown.css">
     <link rel="stylesheet" href="lib/spell-checker.min.css">
     <link rel="stylesheet" href="lib/sweetalert.css">
+    <link rel="stylesheet" href="lib/toastr/toastr.min.css">
     <link rel="stylesheet" href="index.css">
   </head>
   <body id="toplevel">
-    <div id="in"><form><textarea id="code"># New Document</textarea></form></div>
+    <div id="in"><form><textarea id="code"># TabDown
+
+Start (GitHub-Flavored) Markdown from new tabs in your favourite web browsers.
+
+# h1 Heading
+## h2 Heading
+### h3 Heading
+#### h4 Heading
+##### h5 Heading
+###### h6 Heading
+
+## Horizontal Rules
+
+___
+
+---
+
+***
+
+
+## Typographic replacements
+
+Enable typographer option to see result.
+
+(c) (C) (r) (R) (tm) (TM) (p) (P) +-
+
+test.. test... test..... test?..... test!....
+
+!!!!!! ???? ,,  -- ---
+
+"Smartypants, double quotes" and 'single quotes'
+
+
+## Emphasis
+
+**This is bold text**
+
+__This is bold text__
+
+*This is italic text*
+
+_This is italic text_
+
+~~Strikethrough~~
+
+
+## Blockquotes
+
+
+> Blockquotes can also be nested...
+>> ...by using additional greater-than signs right next to each other...
+> > > ...or with spaces between arrows.
+
+
+## Lists
+
+Unordered
+
++ Create a list by starting a line with `+`, `-`, or `*`
++ Sub-lists are made by indenting 2 spaces:
+  - Marker character change forces new list start:
+    * Ac tristique libero volutpat at
+    + Facilisis in pretium nisl aliquet
+    - Nulla volutpat aliquam velit
++ Very easy!
+
+Ordered
+
+1. Lorem ipsum dolor sit amet
+2. Consectetur adipiscing elit
+3. Integer molestie lorem at massa
+
+
+1. You can use sequential numbers...
+1. ...or keep all the numbers as `1.`
+
+Start numbering with offset:
+
+57. foo
+1. bar
+
+## Task Lists
+
+- [ ] This is not completed
+- [x] This is completed
+- [ ] You can only complete a task in markdown file
+
+## Code
+
+Inline `code`
+
+Indented code
+
+    // Some comments
+    line 1 of code
+    line 2 of code
+    line 3 of code
+
+
+Block code "fences"
+
+```
+Sample text here...
+```
+
+Syntax highlighting
+
+``` js
+var foo = function (bar) {
+  return bar++;
+};
+
+console.log(foo(5));
+```
+
+## Tables
+
+| Option | Description |
+| ------ | ----------- |
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+
+Right aligned columns
+
+| Option | Description |
+| ------:| -----------:|
+| data   | path to data files to supply the data that will be passed into templates. |
+| engine | engine to be used for processing templates. Handlebars is the default. |
+| ext    | extension to be used for dest files. |
+
+
+## Links
+
+[link text](http://dev.nodeca.com)
+
+[link with title](http://nodeca.github.io/pica/demo/ "title text!")
+
+Autoconverted link https://github.com/nodeca/pica (enable linkify to see)
+
+
+## Images
+
+![Minion](https://octodex.github.com/images/minion.png)
+![Stormtroopocat](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+
+Like links, Images also have a footnote style syntax
+
+![Alt text][id]
+
+With a reference later in the document defining the URL location:
+
+[id]: https://octodex.github.com/images/dojocat.jpg  "The Dojocat"
+
+
+## Plugins
+
+The killer feature of `markdown-it` is very effective support of
+[syntax plugins](https://www.npmjs.org/browse/keyword/markdown-it-plugin).
+
+
+### [Emojies](https://github.com/markdown-it/markdown-it-emoji)
+
+> Classic markup: :wink: :crush: :cry: :tear: :laughing: :yum:
+>
+> Shortcuts (emoticons): :-) :-( 8-) ;)
+
+see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
+
+### [Footnotes](https://github.com/markdown-it/markdown-it-footnote)
+
+Footnote 1 link[^first].
+
+Footnote 2 link[^second].
+
+Inline footnote^[Text of inline footnote] definition.
+
+Duplicated footnote reference[^second].
+
+[^first]: Footnote **can have markup**
+
+    and multiple paragraphs.
+
+[^second]: Footnote text.
+    </textarea></form></div>
     <div id="out" class="markdown-body"></div>
     <div id="menu">
       <span>Save As</span>
@@ -38,19 +223,18 @@
     </div>
     <div id="navbar">
       <div id="navcontent">
-        <a id="logo" href = "https://github.com/jbt/markdown-editor" tooltip = "Check out the code on Github!">
+        <a id="logo" href = "https://github.com/wangfenjin/markdown-editor" tooltip = "Check out the code on Github!">
           <p id="title" class="left"># Markdown Editor</p>
         </a>
-        <p id="openbutton" title="Open from Disk" class="navbutton left" onclick="document.getElementById('fileInput').click();"><i class="material-icons">open_in_browser</i></p>
+        <p id="openbutton" title="Open from Disk" class="navbutton left"><i class="material-icons">open_in_browser</i></p>
         <input id="fileInput" type="file" class="hidden" accept=".md,.mdown,.txt,.markdown"/>
-        <p id="savebutton" title="Download" class="navbutton left" onclick="showMenu()"><i class="material-icons">file_download</i></p>
-        <p id="browsersavebutton" title="Browser Save (Experimental)" class="navbutton left" onclick="saveInBrowser()"><i class="material-icons">save</i></p>
-        <p id="sharebutton" title="Generate Shareable Link" class="navbutton left" onclick="updateHash()"><i class="material-icons">share</i></p>
-        <p id="nightbutton" title="Night Mode" class="navbutton left" onclick="toggleNightMode(this)"><i class="material-icons">invert_colors</i></p>
-        <p id="readbutton" title="Reading Mode" class="navbutton left" onclick="toggleReadMode(this)"><i class="material-icons">chrome_reader_mode</i></p>
-        <p id="spellbutton" title="Spell Check" class="navbutton left selected" onclick="toggleSpellCheck(this)"><i class="material-icons">spellcheck</i></p>
-        <p id="newbutton" class="navbutton left hidden" onclick="clearEditor()">Clear</p>
-        <p id="sharebutton" class="navbutton left selected hidden">Share</p>
+        <p id="savebutton" title="Download" class="navbutton left"><i class="material-icons">file_download</i></p>
+        <p id="browsersavebutton" title="Browser Save (Experimental)" class="navbutton left"><i class="material-icons">save</i></p>
+        <p id="sharebutton" title="Generate Shareable Link" class="navbutton left"><i class="material-icons">share</i></p>
+        <p id="nightbutton" title="Night Mode" class="navbutton left"><i class="material-icons">invert_colors</i></p>
+        <p id="readbutton" title="Reading Mode" class="navbutton left"><i class="material-icons">chrome_reader_mode</i></p>
+        <p id="spellbutton" title="Spell Check" class="navbutton left selected"><i class="material-icons">spellcheck</i></p>
+        <p id="newbutton" class="navbutton left hidden">Clear</p>
       </div>
     </div>
     <script src="lib/markdown-it.js"></script>
@@ -68,8 +252,10 @@
     <script src="codemirror/lib/util/continuelist.js"></script>
     <script src="lib/spell-checker.min.js"></script>
     <script src="lib/rawinflate.js"></script>
+    <script src="lib/jquery-3.3.1.min.js"></script>
     <script src="lib/rawdeflate.js"></script>
-    <script src = "lib/sweetalert.min.js"></script>
+    <script src="lib/sweetalert.min.js"></script>
+    <script src="lib/toastr/toastr.min.js"></script>
     <script src="index.js"></script>
   </body>
 </html>
