@@ -238,10 +238,10 @@ document.getElementById('close-menu').addEventListener('click', function() {
 
 document.addEventListener('keydown', function(e) {
     if (e.keyCode == 83 && (e.ctrlKey || e.metaKey)) {
-        if ( localStorage.getItem('content') == editor.getValue() ) {
-            e.preventDefault();
-            return false;
-        }
+        // if ( localStorage.getItem('content') == editor.getValue() ) {
+        //     e.preventDefault();
+        //     return false;
+        // }
         e.shiftKey ? showMenu() : saveInBrowser();
 
         e.preventDefault();
@@ -262,7 +262,7 @@ function clearEditor() {
 
 function saveInBrowser() {
     var text = editor.getValue();
-    if (localStorage.getItem('content')) {
+    if (localStorage.getItem('content') != editor.getValue()) {
         swal({
                 title: "Existing Data Detected",
                 text: "You will overwrite the data previously saved!",
