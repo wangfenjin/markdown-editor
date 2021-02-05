@@ -238,10 +238,10 @@ document.getElementById('close-menu').addEventListener('click', function() {
 
 document.addEventListener('keydown', function(e) {
     if (e.keyCode == 83 && (e.ctrlKey || e.metaKey)) {
-        if ( localStorage.getItem('content') == editor.getValue() ) {
-            e.preventDefault();
-            return false;
-        }
+        // if ( localStorage.getItem('content') == editor.getValue() ) {
+        //     e.preventDefault();
+        //     return false;
+        // }
         e.shiftKey ? showMenu() : saveInBrowser();
 
         e.preventDefault();
@@ -262,7 +262,7 @@ function clearEditor() {
 
 function saveInBrowser() {
     var text = editor.getValue();
-    if (localStorage.getItem('content')) {
+    if (localStorage.getItem('content') != editor.getValue()) {
         swal({
                 title: "Existing Data Detected",
                 text: "You will overwrite the data previously saved!",
@@ -284,21 +284,22 @@ function saveInBrowser() {
 }
 
 function toggleNightMode(event) {
-    button = event.target
+    button = event.target;
     button.classList.toggle('selected');
     document.getElementById('toplevel').classList.toggle('nightmode');
 }
 
 function toggleReadMode(event) {
-    button = event.target
+    button = event.target;
     button.classList.toggle('selected');
     document.getElementById('out').classList.toggle('focused');
     document.getElementById('in').classList.toggle('hidden');
 }
 
-function toggleSpellCheck(button) {
+function toggleSpellCheck(event) {
+    button = event.target;
     button.classList.toggle('selected');
-    document.body.classList.toggle('no-spellcheck');
+    document.getElementsByTagName('body')[0].classList.toggle('no-spellcheck');
 }
 
 toastr.options.timeOut = 2400;
