@@ -226,15 +226,16 @@ Duplicated footnote reference[^second].
         <a id="logo" href = "https://github.com/wangfenjin/markdown-editor" tooltip = "Check out the code on Github!">
           <p id="title" class="left"># Markdown Editor</p>
         </a>
-        <p id="openbutton" title="Open from Disk" class="navbutton left"><i class="material-icons">open_in_browser</i></p>
+        <p id="openbutton" title="Open from Disk" class="navbutton left" onclick="document.getElementById('fileInput').click();"><i class="material-icons">open_in_browser</i></p>
         <input id="fileInput" type="file" class="hidden" accept=".md,.mdown,.txt,.markdown"/>
-        <p id="savebutton" title="Download" class="navbutton left"><i class="material-icons">file_download</i></p>
-        <p id="browsersavebutton" title="Browser Save (Experimental)" class="navbutton left"><i class="material-icons">save</i></p>
-        <p id="sharebutton" title="Generate Shareable Link" class="navbutton left"><i class="material-icons">share</i></p>
-        <p id="nightbutton" title="Night Mode" class="navbutton left"><i class="material-icons">invert_colors</i></p>
-        <p id="readbutton" title="Reading Mode" class="navbutton left"><i class="material-icons">chrome_reader_mode</i></p>
-        <p id="spellbutton" title="Spell Check" class="navbutton left selected"><i class="material-icons">spellcheck</i></p>
-        <p id="newbutton" class="navbutton left hidden">Clear</p>
+        <p id="savebutton" title="Download" class="navbutton left" onclick="showMenu()"><i class="material-icons">file_download</i></p>
+        <p id="browsersavebutton" title="Browser Save (Experimental)" class="navbutton left" onclick="saveInBrowser()"><i class="material-icons">save</i></p>
+        <p id="sharebutton" title="Generate Shareable Link" class="navbutton left" onclick="updateHash()"><i class="material-icons">share</i></p>
+        <p id="nightbutton" title="Night Mode" class="navbutton left" onclick="toggleNightMode(this)"><i class="material-icons">invert_colors</i></p>
+        <p id="readbutton" title="Reading Mode" class="navbutton left" onclick="toggleReadMode(this)"><i class="material-icons">chrome_reader_mode</i></p>
+        <p id="spellbutton" title="Spell Check" class="navbutton left selected" onclick="toggleSpellCheck(this)"><i class="material-icons">spellcheck</i></p>
+        <p id="newbutton" class="navbutton left hidden" onclick="clearEditor()">Clear</p>
+        <p id="sharebutton" class="navbutton left selected hidden">Share</p>
       </div>
     </div>
     <script src="lib/markdown-it.js"></script>

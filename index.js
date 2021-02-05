@@ -385,15 +385,15 @@ window.addEventListener("beforeunload", function (e) {
 });
 
 // onclick
-document.getElementById('openbutton').addEventListener('click', function() {
-    document.getElementById('fileInput').click()
-});
-document.getElementById('browsersavebutton').addEventListener('click', saveInBrowser);
-document.getElementById('savebutton').addEventListener('click', showMenu);
-document.getElementById('sharebutton').addEventListener('click', updateHash);
-document.getElementById('nightbutton').addEventListener('click', toggleNightMode);
-document.getElementById('readbutton').addEventListener('click', toggleReadMode);
-document.getElementById('spellbutton').addEventListener('click', toggleSpellCheck);
-document.getElementById('newbutton').addEventListener('click', clearEditor);
+// document.getElementById('openbutton').addEventListener('click', function() {
+//     document.getElementById('fileInput').click()
+// });
+// document.getElementById('browsersavebutton').addEventListener('click', saveInBrowser);
+// document.getElementById('savebutton').addEventListener('click', showMenu);
+// document.getElementById('sharebutton').addEventListener('click', updateHash);
+// document.getElementById('nightbutton').addEventListener('click', toggleNightMode);
+// document.getElementById('readbutton').addEventListener('click', toggleReadMode);
+// document.getElementById('spellbutton').addEventListener('click', toggleSpellCheck);
+// document.getElementById('newbutton').addEventListener('click', clearEditor);
 
 start();
