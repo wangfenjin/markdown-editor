@@ -283,14 +283,14 @@ function saveInBrowser() {
     console.log("Saved");
 }
 
-function toggleNightMode(event) {
-    button = event.target
+function toggleNightMode(button) {
+    // button = event.target
     button.classList.toggle('selected');
     document.getElementById('toplevel').classList.toggle('nightmode');
 }
 
-function toggleReadMode(event) {
-    button = event.target
+function toggleReadMode(button) {
+    // button = event.target
     button.classList.toggle('selected');
     document.getElementById('out').classList.toggle('focused');
     document.getElementById('in').classList.toggle('hidden');
